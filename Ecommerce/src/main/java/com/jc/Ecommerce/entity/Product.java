@@ -1,6 +1,7 @@
 package com.jc.Ecommerce.entity;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.hibernate.annotations.ManyToAny;
@@ -12,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -29,10 +31,11 @@ public class Product {
 	private String String;
 
 	@ManyToAny
-	@JoinTable(name = "tb_product_category", 
-	joinColumns = @JoinColumn(name = "product_id"), 
-	inverseJoinColumns = @JoinColumn(name = "category_id"))
+	@JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
 	private Set<Category> categories = new HashSet<>();
+
+	@OneToMany
+	Set<OrderItem> items = new HashSet<>();
 
 	public Long getId() {
 		return id;
@@ -77,7 +80,13 @@ public class Product {
 	public Set<Category> getCategories() {
 		return categories;
 	}
-	
 
+	public Set<OrderItem> getItems() {
+		return items;
+	}
+
+	public List<Product> getProducts() {
+		return items.stream().map(x -> x.getProduct()).toList();
+	}
 
 }
