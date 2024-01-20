@@ -11,7 +11,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_order")
+@Table(name = "tb_catergoy")
 public class Category {
 
 	@Id
@@ -26,10 +26,10 @@ public class Category {
 
 	}
 
-	public Category(Long id, String name, Set<Product> products) {
+	public Category(Long id, String name) {
 		this.id = id;
 		this.name = name;
-		this.products = products;
+
 	}
 
 	public Long getId() {
@@ -55,9 +55,5 @@ public class Category {
 	public void setProducts(Set<Product> products) {
 		this.products = products;
 	}
-	
-		
-	
-	
 
 }

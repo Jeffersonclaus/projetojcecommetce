@@ -36,7 +36,7 @@ public class Order {
 	@OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
 	private Payment payment;
 
-	@OneToMany
+	@OneToMany(mappedBy = "id.order")
 	Set<OrderItem> items = new HashSet<>();
 
 	Order() {
