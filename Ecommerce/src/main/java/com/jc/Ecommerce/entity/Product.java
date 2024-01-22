@@ -28,7 +28,7 @@ public class Product {
 	@Column(columnDefinition = "TEXT", length = 120)
 	private String description;
 	private Double price;
-	private String String;
+	private String imgUrl;
 
 	@ManyToAny
 	@JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
@@ -69,12 +69,14 @@ public class Product {
 		this.price = price;
 	}
 
-	public String getString() {
-		return String;
+
+
+	public String getImgUrl() {
+		return imgUrl;
 	}
 
-	public void setString(String string) {
-		String = string;
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 
 	public Set<Category> getCategories() {
